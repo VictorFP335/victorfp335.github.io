@@ -226,3 +226,44 @@ a {
   margin-bottom: 20px;
   box-shadow: 0 0 25px rgba(88, 166, 255, 0.4);
 }
+
+
+.experience-card {
+  background: #161b22;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  margin-top: 20px;
+  transition: transform 0.3s;
+}
+
+.experience-card:hover {
+  transform: translateY(-6px);
+}
+
+.experience-card h3 {
+  margin: 0;
+  color: #58a6ff;
+  font-size: 1.5rem;
+}
+
+.role {
+  display: block;
+  font-size: 0.9rem;
+  color: #8b949e;
+  margin-bottom: 15px;
+}
+
+.tech-tags {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tech-tags span {
+  background: #21262d;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
