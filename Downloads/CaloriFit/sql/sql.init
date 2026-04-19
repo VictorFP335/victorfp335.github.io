@@ -1,0 +1,65 @@
+-----------------------------------------
+-- 1) CRIAR DATABASE
+-----------------------------------------
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'CaloriFitDB')
+BEGIN
+    CREATE DATABASE CaloriFitDB;
+END
+GO
+
+USE CaloriFitDB;
+GO
+
+
+-----------------------------------------
+-- 2) TABELA DE USUÁRIOS
+-----------------------------------------
+CREATE TABLE usuarios (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL
+);
+
+
+-----------------------------------------
+-- 3) PERFIL DO USUÁRIO
+-----------------------------------------
+CREATE TABLE perfil_usuario (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    idade INT NULL,
+    peso FLOAT NULL,
+    altura FLOAT NULL,
+    biotipo VARCHAR(50) NULL,
+
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+
+
+-----------------------------------------
+-- 4) CALORIAS DO USUÁRIO
+-----------------------------------------
+CREATE TABLE calorias (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    calorias_totais INT NOT NULL,
+    data_registro DATE DEFAULT GETDATE(),
+
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+
+
+-----------------------------------------
+-- 5) HISTÓRICO (refeições, treinos etc.)
+-----------------------------------------
+CREATE TABLE historico (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    tipo VARCHAR(50) NOT NULL,      -- 'refeicao' ou 'treino'
+    descricao VARCHAR(255) NOT NULL,
+    calorias INT NULL,
+    data_evento DATETIME DEFAULT GETDATE(),
+
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+

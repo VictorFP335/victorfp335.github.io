@@ -1,0 +1,3 @@
+/* Legacy style.css vazio.
+Todo o CSS estilizado agora está definido inline nas tags <style> de cada template 
+para evitar herança de estilos indesejada que estava quebrando o layout responsivo */
